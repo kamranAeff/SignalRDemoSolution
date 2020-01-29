@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        SignalR Demo
+    </title>
+    <link href="~/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .input-group.input-group-multiline {
+            flex-direction: column;
+            margin-bottom: 0 !important;
+        }
+
+            .input-group.input-group-multiline > .input-group-prepend > .input-group-text {
+                width: 100%;
+                border-radius: .2rem .2rem 0 0;
+                margin-right: 1px;
+            }
+
+            .input-group.input-group-multiline > textarea.form-control {
+                border-radius: 0 0 .2rem .2rem;
+                resize: none;
+                border-top: none;
+            }
+
+        .nice-scroll {
+            height: 500px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            <div class="col">
+                <form class="card">
+                    <div class="card-header">
+                        SignalR nümunə
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="chat-email-label">E-mail</span>
+                            </div>
+                            <input id="chat-email" type="text" class="form-control" placeholder="Kimə göndəriləcək" aria-label="Bura sinizi yazın" aria-describedby="chat-email-label">
+                        </div>
+
+                        <div class="input-group input-group-multiline input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="chat-message-label">Mesajınız</span>
+                            </div>
+                            <textarea class="form-control" id="chat-message" aria-describedby="chat-message-label" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted" style="display: flex;align-items: baseline;justify-content: flex-end;">
+                        <div class="input-group mr-3" id="client">
+                            <input type="text" class="form-control" id="eMail" placeholder="E-mailinizi qeyd edin" aria-label="E-mailinizi qeyd edin" 
+                                   aria-describedby="btnConnect">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnConnect">Qoşul</button>
+                            </div>
+                        </div>
+                        <button type="reset" class="btn btn-warning mr-1">Təmizlə</button>
+                        <button type="submit" class="btn btn-primary" id="btnSend" disabled>Göndər</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col nice-scroll">
+                <div class="list-group">
+                    @for (int i = 0; i < 8; i++)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">List group item heading</h5>
+                                <small>3 days ago</small>
+                            </div>
+                            <p class="mb-1">@i)Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                            <small>Donec id elit non mi porta.</small>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/npm/jquery/dist/jquery.min.js"></script>
+    <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/npm/nicescroll/dist/jquery.nicescroll.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nice-scroll").niceScroll(".nice-scroll > div", {
+                cursorwidth: "12px"
+            });
+
+
+            $('#btnConnect').click(function () {
+                let email = $('#eMail').val();
+                if (email == undefined || email.length == 0) {
+                    alert('E-mailinizi qeyd edin');
+                    return;
+                }
+
+                $('#client').remove();
+                $('#btnSend').removeAttr('disabled');
+
+
+
+            });
+
+
+        });
+    </script>
+</body>
+</html>

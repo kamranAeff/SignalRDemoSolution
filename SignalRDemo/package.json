@@ -1,0 +1,8 @@
+{
+  "name": "signalr-demo-project",
+  "version": "1.0.0",
+  "devDependencies": {
+    "bootstrap": "^4.4.1",
+    "nicescroll": "^3.7.4"
+  }
+}
