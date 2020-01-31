@@ -4,16 +4,16 @@
 Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
 
 ###  SignalR dəstəyinin Core containerə əlavə edilməsi
-&lt;pre&gt;
+<pre>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-               &lt;b&gt;services.AddSignalR(); &lt;/b&gt;
+               <b>services.AddSignalR(); </b>
         }
-&lt;/pre&gt;
+</pre>
 
 ###  SignalR dəstəyinin aktivləşdirilməsi
-&lt;pre&gt;
+<pre>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -28,25 +28,25 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
                     Path.Combine(Directory.GetCurrentDirectory(), "node_modules"))
             });
             
-            &lt;b&gt;
-            app.UseSignalR(cfg=&gt; {
+            <b>
+            app.UseSignalR(cfg=> {
 
                 cfg.MapHub&lt;ChatHub&gt;("/chat");
             
             });
-            &lt;/b&gt;
+            </b>
 
-            app.UseMvc(routes =&gt;
+            app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=home}/{action=index}/{id?}");
             });
         }}
-&lt;/pre&gt;
+</pre>
 
 
 ###  SignalR ilə realtime idarəedicinin-Hub yaradılması
 
-&lt;pre&gt;
+<pre>
     public interface IChatHub
     {
         Task Received(string sender,string message);
@@ -77,7 +77,7 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
 
             if (!string.IsNullOrWhiteSpace(email))
             {
-                clients.AddOrUpdate(email, Context.ConnectionId, (k, v) =&gt; Context.ConnectionId);
+                clients.AddOrUpdate(email, Context.ConnectionId, (k, v) => Context.ConnectionId);
 
                 Clients.Caller.Received("FromServer","Welcome");
             }
@@ -91,4 +91,4 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
             return base.OnDisconnectedAsync(exception);
         }
     }
-&lt;/pre&gt;
+</pre>
