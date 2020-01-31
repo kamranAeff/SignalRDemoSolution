@@ -8,8 +8,8 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-               <span style="color:#e74c3c">services.AddSignalR(); </span>
-            }
+               <b>services.AddSignalR(); </b>
+        }
 </pre>
 
 ###  SignalR dəstyinin aktivləşdirilməsi
@@ -28,13 +28,13 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
                     Path.Combine(Directory.GetCurrentDirectory(), "node_modules"))
             });
             
-            <span style="color:#e74c3c">
+            <b>
             app.UseSignalR(cfg=> {
 
                 cfg.MapHub<ChatHub>("/chat");
             
             });
-            </span>
+            </b>
 
             app.UseMvc(routes =>
             {
