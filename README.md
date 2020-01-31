@@ -31,7 +31,7 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
             <b>
             app.UseSignalR(cfg=> {
 
-                cfg.MapHub<ChatHub>("/chat");
+                cfg.MapHub&lt;ChatHub&gt;("/chat");
             
             });
             </b>
