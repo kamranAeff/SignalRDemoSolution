@@ -4,13 +4,13 @@
 Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
 
 ###  SignalR dəstyinin Core containerə əlavə edilməsi
-<code>
+<pre>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-           <ins>services.AddSignalR();</ins>
-        }
-</code>
+               <span style="color:#e74c3c">services.AddSignalR(); </span>
+            }
+</pre>
 
 ###  SignalR dəstyinin aktivləşdirilməsi
 <pre>
@@ -28,13 +28,13 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
                     Path.Combine(Directory.GetCurrentDirectory(), "node_modules"))
             });
             
-            <ins>
+            <span style="color:#e74c3c">
             app.UseSignalR(cfg=> {
 
                 cfg.MapHub<ChatHub>("/chat");
             
             });
-            </ins>
+            </span>
 
             app.UseMvc(routes =>
             {
