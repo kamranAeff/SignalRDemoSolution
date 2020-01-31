@@ -13,7 +13,7 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
 </code>
 
 ###  SignalR dəstyinin aktivləşdirilməsi
-<code>
+<pre>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -35,10 +35,10 @@ Startup faylı üzrə konfigurasiyaların tətbiq edilməsi
             
             });
             </ins>
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=home}/{action=index}/{id?}");
             });
         }}
-</code>
+</pre>
