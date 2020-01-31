@@ -1,34 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Senior\\Source\\Repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj": {}
+    "G:\\source\\repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Senior\\Source\\Repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj": {
+    "G:\\source\\repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Senior\\Source\\Repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj",
+        "projectUniqueName": "G:\\source\\repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj",
         "projectName": "SignalRDemo",
-        "projectPath": "C:\\Users\\Senior\\Source\\Repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj",
-        "packagesPath": "C:\\Users\\Senior\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Senior\\Source\\Repos\\SignalRDemoSolution\\SignalRDemo\\obj\\",
+        "projectPath": "G:\\source\\repos\\SignalRDemoSolution\\SignalRDemo\\SignalRDemo.csproj",
+        "packagesPath": "C:\\Users\\kamran.abdullayev\\.nuget\\packages\\",
+        "outputPath": "G:\\source\\repos\\SignalRDemoSolution\\SignalRDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Senior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kamran.abdullayev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.2"
+          "netcoreapp2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.2": {
+          "netcoreapp2.1": {
             "projectReferences": {}
           }
         },
@@ -39,35 +38,41 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.2": {
+        "netcoreapp2.1": {
           "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )",
+              "version": "[2.1.1, )",
               "autoReferenced": true
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.1.2, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )",
+              "version": "[2.1.0, )",
               "autoReferenced": true
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.4, )"
+              "version": "[2.1.10, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

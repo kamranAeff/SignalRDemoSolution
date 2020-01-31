@@ -12,6 +12,7 @@
     <title>
         SignalR Demo
     </title>
+
     <link href="~/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
@@ -58,37 +59,28 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="chat-message-label">Mesajınız</span>
                             </div>
-                            <textarea class="form-control" id="chat-message" aria-describedby="chat-message-label" rows="3"></textarea>
+                            <textarea class="form-control" id="chat-message" aria-describedby="chat-message-label" rows="3" style="min-height: 100px;"></textarea>
                         </div>
                     </div>
                     <div class="card-footer text-muted" style="display: flex;align-items: baseline;justify-content: flex-end;">
                         <div class="input-group mr-3" id="client">
-                            <input type="text" class="form-control" id="eMail" placeholder="E-mailinizi qeyd edin" aria-label="E-mailinizi qeyd edin" 
+                            <input type="text" class="form-control" id="eMail" value="" placeholder="E-mailinizi qeyd edin" aria-label="E-mailinizi qeyd edin"
                                    aria-describedby="btnConnect">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="btnConnect">Qoşul</button>
+                                <button class="btn btn-outline-secondary" type="button" 
+                                        id="btnConnect">Qoşul</button>
                             </div>
                         </div>
                         <button type="reset" class="btn btn-warning mr-1">Təmizlə</button>
-                        <button type="submit" class="btn btn-primary" id="btnSend" disabled>Göndər</button>
+                        <button type="button" class="btn btn-primary" id="btnSend" disabled>Göndər</button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col nice-scroll">
-                <div class="list-group">
-                    @for (int i = 0; i < 8; i++)
-                    {
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">@i)Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small>Donec id elit non mi porta.</small>
-                        </a>
-                    }
+                <div class="list-group" id="messages">
+                  
                 </div>
             </div>
         </div>
@@ -97,6 +89,8 @@
     <script src="~/npm/jquery/dist/jquery.min.js"></script>
     <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/npm/nicescroll/dist/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.js"></script>
+
     <script>
         $(document).ready(function () {
             $(".nice-scroll").niceScroll(".nice-scroll > div", {
@@ -110,16 +104,64 @@
                     alert('E-mailinizi qeyd edin');
                     return;
                 }
-
-                $('#client').remove();
+                $('.card-header').html(email);
+                startUp(email);
+                $('#client').hide();
                 $('#btnSend').removeAttr('disabled');
-
-
-
             });
 
 
+            $('#btnSend').click(function () {
+                var to = $('#chat-email').val();
+                var message = $('#chat-message').val();
+
+                $.connection.invoke('sendMessage',to,message);
+            });
         });
+
+        function received(name, message) {
+
+            /*
+             <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">List group item heading</h5>
+                                <small>3 days ago</small>
+                            </div>
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        
+                        </a>
+             */
+
+            var mItem = `<a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">${name}</h5>
+                                <small>3 days ago</small>
+                            </div>
+                            <p class="mb-1">${message}</p>
+                        
+                        </a>`;
+
+            $('#messages').append($(mItem));
+
+            //console.log(name, connectionId);
+        }
+
+        function startUp(email) {
+            $.connection =
+                new signalR.HubConnectionBuilder()
+                //.configureLogging(signalR.LogLevel.None)
+                    .withUrl(`/chat?email=${email}`).build();
+
+            $.connection.start()
+                .then(function () {
+                    console.log('###Connected');
+
+                    $.connection.on('received', received);
+
+
+                })
+                .catch(function (ex) { console.log(ex); });
+        }
     </script>
 </body>
 </html>
